@@ -2,10 +2,10 @@ import "./globals.css";
 import React from "react";
 import localFont from "next/font/local";
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
-import {LinearProgress} from "@mui/material";
-import theme from "@/app/theme";
+import {LinearProgress, ThemeProvider} from "@mui/material";
 import {NextAppProvider} from "@toolpad/core/nextjs";
-import {Navigation} from "@toolpad/core";
+import {DashboardLayout, Navigation, PageContainer} from "@toolpad/core";
+import theme from "@/app/theme";
 
 
 
@@ -21,16 +21,17 @@ const NAVIGATION: Navigation = [
         title: 'Main items',
     },
     {
-        segment: 'page',
-        title: 'Page',
-
-    },
-    {
-        segment: 'page-2',
-        title: 'Page 2',
-
-    },
+        segment: 'order',
+        title: '주문',
+        children: [{
+            segment: 'btOrder',
+            title: '돌파 주문',
+        }]
+    }
 ];
+const BRANDING = {
+    title: 'My Toolpad Core App',
+};
 
 export default function RootLayout({
   children,
@@ -38,15 +39,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="kr" className={`${pretendard.variable}`}>
+    <html lang="kr" className={`${pretendard.variable}`} suppressHydrationWarning={true}>
       <body className={pretendard.className}>
-      <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-        <React.Suspense fallback={<LinearProgress />}>
-          <NextAppProvider navigation={NAVIGATION} >
-            {children}
-          </NextAppProvider>
-        </React.Suspense>
-      </AppRouterCacheProvider>
+          <AppRouterCacheProvider options={{ enableCssLayer: true,key:'css' }}>
+            <ThemeProvider theme={theme}>
+                <React.Suspense fallback={<LinearProgress />}>
+                    <NextAppProvider navigation={NAVIGATION} branding={BRANDING}>
+                        <DashboardLayout>
+                            <PageContainer>{children}</PageContainer>
+                        </DashboardLayout>
+                    </NextAppProvider>
+                </React.Suspense>
+            </ThemeProvider>
+          </AppRouterCacheProvider>
       </body>
     </html>
   );
