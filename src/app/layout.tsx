@@ -25,12 +25,18 @@ const NAVIGATION: Navigation = [
         title: '주문',
         children: [{
             segment: 'btOrder',
-            title: '돌파 주문',
-        }]
-    }
+            title: '1',
+        },
+        {
+            segment: 'twoWayOrder',
+            title: '2',
+        }
+        ]
+    },
+
 ];
 const BRANDING = {
-    title: 'My Toolpad Core App',
+    title: '',
 };
 
 export default function RootLayout({
