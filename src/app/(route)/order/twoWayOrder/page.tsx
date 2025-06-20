@@ -3,8 +3,8 @@ import { Paper,Container} from "@mui/material";
 import OrderTab from "@/app/(route)/order/twoWayOrder/OrderTab";
 export default function TwoWayOrderPage() {
   return (
-      <Paper>
-          <Container >
+      <Paper sx={{width:"1280px"}}>
+          <Container>
               <OrderTab/>
           </Container>
       </Paper>

@@ -12,7 +12,7 @@ const columns: GridColDef[] = [
     { field: 'status', headerName: 'status', width: 130 },
 ];
 
-const paginationModel = { page: 0, pageSize: 5 };
+const paginationModel = { page: 0, pageSize: 20 };
 
 // [
 //     {
@@ -49,6 +49,8 @@ export default function BtOrderList() {
 
     const getList = async () => {
        const result =  await APIBuilder.get("/order/bt/get/list").params({}).build().call()
+
+
         setList(result.data as BtOrderInterface[])
     }
 
