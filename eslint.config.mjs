@@ -23,7 +23,7 @@ const eslintConfig = [
             reportUnusedDisableDirectives: true,
         },
     },
-    ...compat.extends("next/core-web-vitals", "next/typescript"),
+    ...compat.extends("next/core-web-vitals", "next/typescript",'plugin:prettier/recommended'),
 ];
 
 export default eslintConfig;

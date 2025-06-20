@@ -1,15 +1,14 @@
-import {DataGrid, GridColDef} from "@mui/x-data-grid";
-import React, {useEffect} from "react";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import React, { useEffect } from "react";
 import APIBuilder from "@/lib/utils/API/APIBuilder";
 
-
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'name', headerName: 'Symbol Name', width: 130 },
-    { field: 'side', headerName: 'Side', width: 130 },
-    { field: 'price', headerName: 'Price', width: 130,type:"number" },
-    { field: 'count', headerName: 'Count', width: 130,type:"number" },
-    { field: 'status', headerName: 'status', width: 130 },
+  { field: "id", headerName: "ID", width: 70 },
+  { field: "name", headerName: "Symbol Name", width: 130 },
+  { field: "side", headerName: "Side", width: 130 },
+  { field: "price", headerName: "Price", width: 130, type: "number" },
+  { field: "count", headerName: "Count", width: 130, type: "number" },
+  { field: "status", headerName: "status", width: 130 },
 ];
 
 const paginationModel = { page: 0, pageSize: 20 };
@@ -28,40 +27,40 @@ const paginationModel = { page: 0, pageSize: 20 };
 // ]
 
 interface BtOrderInterface {
-    id: string;
-    name: string;
-    side: string;
-    price: number;
-    count: number;
-    status: string;
-    minPrice: number;
-    maxPrice: number;
+  id: string;
+  name: string;
+  side: string;
+  price: number;
+  count: number;
+  status: string;
+  minPrice: number;
+  maxPrice: number;
 }
 
-
 export default function BtOrderList() {
+  const [list, setList] = React.useState<BtOrderInterface[]>([]);
 
-    const [list, setList] = React.useState<BtOrderInterface[]>([]);
+  useEffect(() => {
+    getList();
+  }, []);
 
-    useEffect(() => {
-        getList();
-    },[])
+  const getList = async () => {
+    const result = await APIBuilder.get("/order/bt/get/list")
+      .params({})
+      .build()
+      .call();
 
-    const getList = async () => {
-       const result =  await APIBuilder.get("/order/bt/get/list").params({}).build().call()
+    setList(result.data as BtOrderInterface[]);
+  };
 
-
-        setList(result.data as BtOrderInterface[])
-    }
-
-    return (
-        <DataGrid
-            rows={list}
-            columns={columns}
-            initialState={{ pagination: { paginationModel } }}
-            pageSizeOptions={[5, 10]}
-            checkboxSelection
-            sx={{ border: 0 }}
-        />
-    )
+  return (
+    <DataGrid
+      rows={list}
+      columns={columns}
+      initialState={{ pagination: { paginationModel } }}
+      pageSizeOptions={[5, 10]}
+      checkboxSelection
+      sx={{ border: 0 }}
+    />
+  );
 }
