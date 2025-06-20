@@ -1,4 +1,5 @@
-import axios, { AxiosPromise } from "axios";
+import axios, {AxiosPromise} from "axios";
+
 
 export type HTTPMethod = "GET" | "POST" | "PUT" | "DELETE";
 

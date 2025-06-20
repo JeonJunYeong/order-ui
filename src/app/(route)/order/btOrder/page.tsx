@@ -12,7 +12,7 @@ export default function BtOrder() {
     const handleClose = () => setOpen(false);
 
     return (
-        <Paper sx={{ height: 400, width: '100%', }}>
+        <Paper sx={{  width: '100%', }}>
             <BtOrderList/>
             <Fab sx={{m:2}} color="primary" aria-label="add"
                 onClick={handleOpen}
