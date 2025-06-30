@@ -17,6 +17,10 @@ export const twoWayOrderAPi = {
       const sideResult = side === 'buy' ? 'sell' : 'buy';
       return APIBuilder.get("order/close/single/order").params({id,userId,name,sideResult,count}).build().call();
    },
+   closeOrder: async (id,userId:string,  symbol:string,side: string,count: string) => {
+      const sideResult = side === 'buy' ? 'sell' : 'buy';
+      return APIBuilder.get("order/close/order").params({id,userId,symbol,side:sideResult,count}).build().call();
+   },
    openOrder: async (id:string,userId:string,  name:string,side: string) => {
       // const sideResult = side === 'buy' ? 'sell' : 'buy';
       return APIBuilder.get("order/open/twoWayOrder").params({id,userId,name,side}).build().call();
