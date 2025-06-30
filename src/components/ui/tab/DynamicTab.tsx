@@ -18,9 +18,9 @@ const {
   reverseOpenOrderApi,
 } = twoWayOrderAPi;
 
-interface DynamicTabProps {
-  list: Array<{ label: string; id: string }>;
-}
+// interface DynamicTabProps {
+//   list: Array<{ label: string; id: string }>;
+// }
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -130,7 +130,6 @@ function singleCloseOrder(e) {
   const { id, userId, name, side, count } = e.row;
   closeSingleOrder(id, userId, name, side, 0);
 }
-
 function closePosition(e) {
   const { id, userId, name, side, count } = e.row;
   closeSingleOrder(id, userId, name, side, count);
