@@ -46,6 +46,16 @@ const NAVIGATION: Navigation = [
       },
     ],
   },
+  {
+    segment: "exchange",
+    title: "환종",
+    children: [
+      {
+        segment: "exchange",
+        title: "환종",
+      }
+    ],
+  },
 ];
 const BRANDING = {
   title: "",
